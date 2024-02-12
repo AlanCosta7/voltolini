@@ -1,0 +1,93 @@
+// app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'League Spartan', sans-serif;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 161%; /* 64.4px */
+    text-transform: uppercase;
+    margin: none;
+}
+
+h6 {
+    font-family: 'League Spartan', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.gradiente {
+    background: var(--Gradiente, linear-gradient(70deg, #E61C3C 2.15%, #214F9C 98.21%));
+}
+
+.text_gradiente {
+      /* Primeiro passo: definir um degradê como fundo */
+    background-image: linear-gradient(70deg, #E61C3C 2.15%, #214F9C 98.21%);
+
+    /* Segundo passo: apagar do fundo tudo que não estiver imediatamente atrás de texto */
+    background-clip: text;
+    -webkit-background-clip: text; /* Alguns navegadores precisam do prefixo */
+
+    /* Terceiro passo: apagar o texto, deixando apenas o fundo atrás dele */
+    -webkit-text-fill-color: transparent;
+
+    /* Cor que contraste com o degradê, caso o navegador não suporte `background-clip: text` */
+    color: black;
+}
+
+.border_gradiente {
+    background: linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 8px) calc(100% - 8px) no-repeat,
+            linear-gradient(46deg, #e61c3c 0%, #214f9c 100%);
+    border-radius: 0px;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.btn1 {
+    padding: 10px 0 10px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.borda01 {
+    border: 3px solid white
+}
+
+a {
+    font-family: 'League Spartan', sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+p {
+    font-family: 'League Spartan', sans-serif;
+}
+
+.container {
+    @media only screen and (min-width: 900px) {
+        width: 70%;
+    }
+
+    @media only screen and (max-width: 900px) {
+        width: 90%;
+    }
+
+}
