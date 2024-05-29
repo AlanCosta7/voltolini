@@ -1,172 +1,48 @@
 <template>
-  <div class="q-pa-md">
-    <div
-      class="fixed-full image-gallery__blinder bg-grey-8"
-      :class="indexZoomed !== void 0 ? 'image-gallery__blinder--active' : void 0"
-      @click="zoomImage()"
-    />
+  <div class="row items-center justify-around">
+    <q-list v-for="(item, i) in lista" :key="i">
+      <q-item clickable v-ripple @click="open(item.data.imagem_1600)">
+        <q-item-section avatar>
+          <q-img
+            :src="item.data.imagem_200"
+            :ratio="1"
+            width="200px"
+            spinner-color="primary"
+            spinner-size="82px"
+          />
+        </q-item-section>
+      </q-item>
+    </q-list>
 
-    <div
-      class="row justify-center q-gutter-sm q-mx-auto relative-position"
-      style="max-width: 100vw"
-    >
-      <q-img
-        v-for="(src, index) in images"
-        :key="index"
-        :ref="el => { thumbRef[index] = el }"
-        class="image-gallery__image"
-        :style="index === indexZoomed ? 'opacity: 0.3' : void 0"
-        :src="src"
-        @click="zoomImage(index)"
-      />
-    </div>
+    <q-dialog v-model="dialogImg">
+      <q-card class="full-width">
+          <q-img
+            :src="isImg"
+            width="100%"
+            spinner-color="primary"
+            spinner-size="82px"
+          />
+      </q-card>
+    </q-dialog>
 
-    <q-img
-      ref="fullRef"
-      class="image-gallery__image image-gallery__image-full fixed-center"
-      :class="indexZoomed !== void 0 ? 'image-gallery__image-full--active' : void 0"
-      :src="images[indexZoomed]"
-      @load="imgLoadedResolve"
-      @error="imgLoadedReject"
-      @click="zoomImage()"
-    />
   </div>
 </template>
 
-<script>
-import { ref, onBeforeUpdate, computed } from 'vue'
-import morph from 'quasar/src/utils/morph.js';
+<script setup>
+import { ref, computed } from 'vue'
 
-export default {
-  props: ['lista'],
-  setup (props) {
-    const thumbRef = ref([])
-    const fullRef = ref(null)
-    const indexZoomed = ref(void 0)
-    const images = computed(() => props.lista.filter((v) => v && v.img_1600).map((m) => m.img_1600))
-    console.log('props.lista', props.lista, images.value)
-    const imgLoaded = {
-      promise: Promise.resolve(),
-      resolve: () => {},
-      reject: () => {}
-    }
+const props = defineProps(["lista"]);
+let lista = computed(() => props.lista.sort((a, b) => Number(a.data.index) - Number(b.data.index)));
+let isImg = ref(null)
+let dialogImg = ref(false)
 
-    function imgLoadedResolve () {
-      imgLoaded.resolve()
-    }
-
-    function imgLoadedReject () {
-      imgLoaded.reject()
-    }
-
-    function zoomImage (index) {
-      const indexZoomedState = indexZoomed.value
-      let cancel = void 0
-
-      imgLoaded.reject()
-
-      const zoom = () => {
-        if (index !== void 0 && index !== indexZoomedState) {
-          imgLoaded.promise = new Promise((resolve, reject) => {
-            imgLoaded.resolve = () => {
-              imgLoaded.resolve = () => {}
-              imgLoaded.reject = () => {}
-
-              resolve()
-            }
-            imgLoaded.reject = () => {
-              imgLoaded.resolve = () => {}
-              imgLoaded.reject = () => {}
-
-              reject()
-            }
-          })
-
-          cancel = morph({
-            from: thumbRef.value[ index ].$el,
-            to: fullRef.value.$el,
-            onToggle: () => {
-              indexZoomed.value = index
-            },
-            waitFor: imgLoaded.promise,
-            duration: 400,
-            hideFromClone: true,
-            onEnd: end => {
-              if (end === 'from' && indexZoomed.value === index) {
-                indexZoomed.value = void 0
-              }
-            }
-          })
-        }
-      }
-
-      if (
-        indexZoomedState !== void 0 &&
-        (cancel === void 0 || cancel() === false)
-      ) {
-        morph({
-          from: fullRef.value.$el,
-          to: thumbRef.value[ indexZoomedState ].$el,
-          onToggle: () => {
-            indexZoomed.value = void 0
-          },
-          duration: 200,
-          keepToClone: true,
-          onEnd: zoom
-        })
-      }
-      else {
-        zoom()
-      }
-    }
-
-    // Make sure to reset the dynamic refs before each update.
-    onBeforeUpdate(() => {
-      thumbRef.value = []
-    })
-
-    return {
-      thumbRef,
-      fullRef,
-      indexZoomed,
-      images,
-      zoomImage,
-
-      imgLoadedResolve,
-      imgLoadedReject
-    }
-  }
+function open(item) {
+  isImg.value = item
+  dialogImg.value = true
 }
+
 </script>
 
-<style lang="sass">
-.image-gallery
-  &__image
-    border-radius: 3%/5%
-    width: 150px
-    height: 150px
-    cursor: pointer
+<style>
 
-    &-full
-      width: 800px
-      height: 800px
-      max-width: 80vw
-      max-height: 80vw
-      z-index: 2002
-      pointer-events: none
-
-      &--active
-        pointer-events: all
-  &__blinder
-    opacity: 0
-    z-index: 2000
-    pointer-events: none
-    transition: opacity 0.3s ease-in-out
-
-    &--active
-      opacity: 0.6
-      pointer-events: all
-
-      + div > .image-gallery__image
-        z-index: 2001
 </style>

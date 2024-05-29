@@ -23,6 +23,12 @@
         <p>
           <b>Flooring:</b> Step into a world of possibilities with our Flooring solutions. We offer a diverse range of materials and designs to suit your preferences, ensuring that every step you take is on a foundation of quality and style.
         </p>
+        <p>
+          <b>Kitchen:</b> The kitchen is the heart of your home, where you show love for your family and friends and spend quality time with your loved ones Renovating your kitchen brings a significant value to your home, this is one of the biggest investments you can make for your family and your home.
+        </p>
+        <p>
+          <b>Other:</b> Explore a universe of possibilities with our diverse services. Whatever your refurbishment or project needs, we stand ready to meet them. From optimizing spaces to creative and innovative solutions, our multidisciplinary teams offer varied expertise to cater to your unique preferences and challenges. We are committed to excellence, turning each project into a masterpiece of design and functionality.
+        </p>
       </div>
     </div>
   </q-page>
@@ -34,10 +40,8 @@ import anime from 'animejs/lib/anime.es.js';
 
 function onIntersection (entry) {
   if(entry.isIntersecting) {
-    console.log(true, entry)
     setAnime(true)
   } else {
-    console.log(false)
     setAnime(false)
   }
 }

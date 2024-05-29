@@ -42,7 +42,6 @@
     <q-drawer
       v-if="mobile"
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
     >
       <q-list>
@@ -117,7 +116,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { useGlobalStore } from '../stores/globalStore'
 import Header from 'components/Header.vue'
@@ -131,6 +130,7 @@ const leftDrawerOpen = ref(false)
 const route = useRoute()
 
 const mobile = computed(() => global.mobile)
+
 const isHeight = computed(() => {
   return mobile?'90vh':'650px'
 })
@@ -141,7 +141,7 @@ const isPage = computed(() => {
       return {
         img: 'https://cdn.quasar.dev/img/parallax1.jpg',
         height: isHeight.value,
-        title: 'Working to make your dream renovations com true',
+        title: 'Working to make your dream renovation come true',
         link: 'home',
         btn: true,
         logo: true
@@ -243,4 +243,7 @@ function onRouter(item) {
   openURL(item.link)
 }
 
+onMounted(async() => {
+  global.promiseAll()
+})
 </script>

@@ -17,7 +17,7 @@ const env = require('dotenv').config({
 
 module.exports = configure(function (/* ctx */) {
   return {
-    
+
 
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -52,44 +52,33 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
-      env: env,
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
-        node: 'node18'
+        node: 'node20'
       },
-
-      vueRouterMode: 'history', // available values: 'hash', 'history'
-      // vueRouterBase,
-      // vueDevtools,
-      // vueOptionsAPI: false,
-
-      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
-
-      // publicPath: '/',
-      // analyze: true,
-      // env: {},
-      // rawDefine: {}
-      // ignorePublicFolder: true,
-      // minify: false,
-      // polyfillModulePreload: true,
-      // distDir
-
-      // extendViteConf (viteConf) {},
-      // viteVuePluginOptions: {},
-
-      vitePlugins: [
-        ['@intlify/vite-plugin-vue-i18n', {
-          // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-          // compositionOnly: false,
-
-          // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
-          // you need to set `runtimeOnly: false`
-          // runtimeOnly: false,
-
-          // you need to set i18n resource including paths !
-          include: path.resolve(__dirname, './src/i18n/**')
-        }]
-      ]
+      env: env,
+      scopeHoisting: true,
+      vueRouterMode: 'history',
+      showProgress: true,
+      gzip: true,
+      analyze: false,
+      modern: true,
+      chainWebpack(chain) {
+        chain.optimization.splitChunks({
+          cacheGroups: {
+            quasar: {
+              test: /quasar/,
+              name: 'quasar',
+              chunks: 'all',
+            },
+            firebase: {
+              test: /firebase/,
+              name: 'firebase',
+              chunks: 'all',
+            },
+          }
+        })
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
@@ -156,7 +145,7 @@ module.exports = configure(function (/* ctx */) {
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
-    pwa: {      
+    pwa: {
       workboxMode: 'generateSW', // or 'injectManifest'
       workboxOptions: {
         skipWaiting: true,
@@ -166,15 +155,58 @@ module.exports = configure(function (/* ctx */) {
           '/statics/'
         ]
       },
-      injectPwaMetaTags: true,
-      swFilename: 'sw.js',
-      manifestFilename: 'manifest.json',
-      useCredentialsForManifestTag: false,
-      // useFilenameHashes: true,
-      // extendGenerateSWOptions (cfg) {}
-      // extendInjectManifestOptions (cfg) {},
-      // extendManifestJson (json) {}
-      // extendPWACustomSWConf (esbuildConf) {}
+      manifest: {
+        name: 'Voltolini',
+        short_name: `voltolini`,
+        description: `Working to make your dream renovation come true`,
+        display: 'standalone',
+        orientation: 'portrait-primary',
+        background_color: '#234C5D',
+        theme_color: '#234C5D',
+        start_url: "",
+        scope: "/",
+        icons: [
+          {
+            src: 'icons/icon-128x128.png',
+            sizes: '128x128',
+            purpose: "maskable",
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-192x192.png',
+            sizes: '192x192',
+            purpose: "maskable",
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-256x256.png',
+            sizes: '256x256',
+            purpose: "maskable",
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-384x384.png',
+            sizes: '384x384',
+            purpose: "maskable",
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-512x512.png',
+            sizes: '512x512',
+            purpose: "maskable",
+            type: 'image/png'
+          }
+        ],
+        shortcuts: [
+          {
+            name: "Voltolini",
+            short_name: "voltolini",
+            description: "Working to make your dream renovation come true",
+            url: "/",
+            icons: [{ src: "icons/icon-192x192.png", sizes: "192x192" }]
+          }
+        ]
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova

@@ -16,7 +16,7 @@
             <div class="col-md-6 col-xs-12" :style="mobile?'margin-left: 0px':'margin-left: -200px;'">
                 <q-img
                   class=""
-                  src="https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2Fthumbs%2Fpexels-ivan-samkov-8117475_1600x1600.webp?alt=media&token=2f518eaa-f891-495c-80f5-c5aefc6eeb0d"
+                  src="../assets/about.jpg"
                   :ratio="1"
                   spinner-color="primary"
                   spinner-size="82px"
@@ -24,15 +24,15 @@
             </div>
 
             <div class="text-black col-md-5 col-xs-12 q-pt-xl text-h6">
-              <p>
-                Welcome to Voltorini, where innovation meets elegance in the world of interior design. We take pride in transforming spaces into captivating environments that reflect the unique personality and lifestyle of each client.
-              </p>
-              <p>
-                At Voltorini, our passion lies in creating personalized and functional designs that go beyond aesthetics. Our dedicated team of experts specializes, ensuring a comprehensive approach to meet your every need.
-              </p>
-              <p>
-                We don't just design spaces; we curate experiences. Our commitment to excellence, attention to detail, and passion for innovation set us apart in the world of interior design. Discover the possibilities with us and let your space tell a story of beauty, functionality, and unmatched sophistication.
-              </p>
+              <p>We are a construction and renovation company that has been operating in the market for over 6 years, but Voltolini has been around for generations.</p>
+
+              <p>The love for this field has been passed down from father to son, and today we are a family business with strong values and character. We are passionate about what we do, and our greatest joy is to make your dream come true.</p>
+
+              <p>We understand that building and renovating are not always about consumerism, but rather about the desire to have a more family-oriented, comfortable environment that brings peace and joy.</p>
+
+              <p>We want you to trust us as many other clients have. We want to join you in one single purpose: to realize your dream of the perfect environment.</p>
+
+              <p>See you soon!</p>
             </div>
           </q-card>
 

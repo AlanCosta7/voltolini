@@ -21,8 +21,6 @@ const route = useRoute()
 
 const name = computed(() => route.name)
 
-console.log('link: ', name.value)
-
 function onRouter(item) {
   router.push({name: item})
 }

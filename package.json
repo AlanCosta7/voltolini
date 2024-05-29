@@ -1,7 +1,7 @@
 {
   "name": "voltolini",
-  "version": "0.0.1",
-  "description": "WORKING TO MAKE YOUR DREAM RENOVATIONS COM TRUE",
+  "version": "0.0.4",
+  "description": "Working to make your dream renovation come true",
   "productName": "voltolini",
   "author": "Alan Costa <alanpc7@gmail.com>",
   "private": true,
@@ -9,7 +9,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "start": "quasar dev",
-    "hosting": "firebase deploy --only hosting",
+    "hosting": "firebase deploy --only hosting:voltolini-home-improvement",
     "build": "quasar build -m pwa"
   },
   "dependencies": {
@@ -21,8 +21,10 @@
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
+    "vue-compare-image": "^0.2.0",
     "vue-i18n": "^9.0.0",
-    "vue-router": "^4.0.0"
+    "vue-router": "^4.0.0",
+    "vue3-compare-image": "^1.2.2"
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",

@@ -43,7 +43,7 @@ let listaComponentes = ref([
     txt2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempus leo non felis varius, at pharetra just, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempus leo non felis varius, at pharetra just",
   },
   {
-    img: "https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2FAccent%20wall%2Fthumbs%2FWhatsApp%20Image%202023-12-19%20at%2014.32.22%20(21)_400x400.webp?alt=media&token=fb76db59-1e3b-4e71-8353-51cf08ea8bc5",
+    img: "https://storage.googleapis.com/download/storage/v1/b/voltolini-home-improvement.appspot.com/o/galeria%2Faccent_wall%2Fall%2F90a71302-ac93-472a-9075-64cb7c47148e_1600x1600?generation=1716227470784332&alt=media",
     txt1: "Accent Wall",
     link: "accent_wall",
     txt2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempus leo non felis varius, at pharetra just, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempus leo non felis varius, at pharetra just",
@@ -58,7 +58,19 @@ let listaComponentes = ref([
     img: "https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2FFlooring%2Fthumbs%2FWhatsApp%20Image%202023-12-19%20at%2014.29.32%20(3)_400x400.webp?alt=media&token=08c78a55-ec7d-4ef5-ad8a-348fa79293dd",
     txt1: "Flooring",
     link: "flooring",
-    txt2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempus leo non felis varius, at pharetra just, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempus leo non felis varius, at pharetra just",
+    txt2: "We know that the flooring of a space can completely transform its feel and functionality. That`s why we offer a wide variety of high-quality options to meet all your needs, ensuring you find the perfect solution for every type of environment.",
+  },
+  {
+    img: "https://storage.googleapis.com/download/storage/v1/b/voltolini-home-improvement.appspot.com/o/galeria%2Fkitchen%2Fall%2F9aa02d08-6d45-41cc-aa88-62404c361b0f_400x400?generation=1715008717979682&alt=media",
+    txt1: "Kitchen",
+    link: "kitchen",
+    txt2: "The kitchen is the heart of your home, where you show love for your family and friends and spend quality time with your loved ones Renovating your kitchen brings a significant value to your home, this is one of the biggest investments you can make for your family and your home",
+  },
+  {
+    img: "https://storage.googleapis.com/download/storage/v1/b/voltolini-home-improvement.appspot.com/o/galeria%2Fwalls_paper%2Fall%2F9cc7753f-345a-4cb1-b036-56bd1091dbc0_1600x1600?generation=1716514847931187&alt=media",
+    txt1: "Others",
+    link: "others",
+    txt2: "Explore a universe of possibilities with our diverse services. Whatever your refurbishment or project needs, we stand ready to meet them. From optimizing spaces to creative and innovative solutions, our multidisciplinary teams offer varied expertise to cater to your unique preferences and challenges. We are committed to excellence, turning each project into a masterpiece of design and functionality.",
   },
 ]);
 

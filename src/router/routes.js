@@ -11,6 +11,15 @@ const routes = [
       { path: 'gallery/:id', name: 'listaimg', component: () => import('pages/ListaImg.vue') },
     ]
   },
+  {
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      { path: '', name:'auth', component: () => import('pages/admin/auth.vue') },
+      { path: '/index', name:'admin', component: () => import('pages/admin/Admin.vue') },
+
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

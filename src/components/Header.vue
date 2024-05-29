@@ -3,6 +3,8 @@
     animated
     v-model="slide"
     infinite
+    transition-prev="slide-right"
+    transition-next="slide-left"
     :autoplay="true"
     :height="isPage.height"
     v-if="isPage && isPage.height"
@@ -10,13 +12,13 @@
   >
     <q-carousel-slide :name="i" v-for="(item, i) in lista" :key="i" class="column no-wrap q-pa-none q-ma-none flex-center">
       <q-img
-        class="pelicula transparent"
+        class="pelicula transparent dimmed"
         :src="item"
         :height="isPage.height"
         spinner-color="primary"
         spinner-size="82px"
       >
-        <div v-if="isPage.title" class="absolute-full q-py-lg flex flex-center">
+        <div v-if="isPage.title" class="absolute-full q-py-lg z-top flex flex-center">
             <div class="full-width text-center q-py-xl" v-if="isPage.logo">
               <q-img
 
@@ -46,15 +48,18 @@ import { ref, computed } from 'vue'
 import { useGlobalStore } from '../stores/globalStore'
 import { openURL } from 'quasar'
 
+import imagem1 from "../assets/header/001.jpeg";
+import imagem2 from "../assets/header/002.jpeg";
+import imagem3 from "../assets/header/003.jpeg";
+import imagem4 from "../assets/header/004.jpeg";
+import imagem5 from "../assets/header/005.jpeg";
+
+
 const global = useGlobalStore()
 const props = defineProps(['isPage'])
 const isPage = computed(() => props.isPage)
 const slide = ref(0)
-const lista = ref([
-  'https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2FCarousel%2Fthumbs%2F1_1600x1600.webp?alt=media&token=4a6a1b9f-1a79-493c-9466-90e0d560780e',
-  'https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2FCarousel%2Fthumbs%2F2_1600x1600.webp?alt=media&token=2792de91-72a6-48e8-97a7-15031e8ca2d5',
-  'https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2FCarousel%2Fthumbs%2F3_1600x1600.webp?alt=media&token=598a59b5-061a-4a23-9325-b700099c4b63',
-  'https://firebasestorage.googleapis.com/v0/b/lt-constructionfl.appspot.com/o/voltolini%2FCarousel%2Fthumbs%2F4_1600x1600.webp?alt=media&token=577c4d25-dc36-4535-ad5e-80427d494815'])
+const lista = ref([imagem1, imagem2, imagem3, imagem4, imagem5])
 const mobile = computed(() => global.mobile)
 
 function onClick() {

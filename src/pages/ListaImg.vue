@@ -3,13 +3,29 @@
     <div>
       <div class="flex flex-center q-pa-xl" >
         <div>
-          <h1 class="text-center"><span>{{ title }}</span></h1>
+          <h1 class="text-center"><span>{{ title.label }}</span></h1>
           <div class="subtitle text-center">{{ descricao }}</div>
         </div>
       </div>
     </div>
     <div class="fit row items-start justify-around paddingGaleria">
-      <Galeria :lista="lista" />
+      <Galeria :lista="lista_galeria" />
+    </div>
+    <div v-if="antes_depois.length">
+      <h2 class="text-center">Antes e Depois</h2>
+      <div class="row items-start justify-around">
+        <q-list class="col-xs-12 col-md-6" v-for="(item, i) in antes_depois" :key="i">
+          <AntesDepois v-if="item" :beforeSrc="item.data.antes_imagem_800" :afterSrc="item.data.depois_imagem_800" />
+        </q-list>
+      </div>
+    </div>
+    <div v-if="listaVideo.length" class="full-width">
+      <h2 class="text-center">Video</h2>
+      <div class="row items-start justify-center full-width">
+        <q-list class="col-xs-12 col-md-5 text-center row items-start justify-center " v-for="(item, i) in listaVideo" :key="i">
+          <Video :video="item.data.link" />
+        </q-list>
+      </div>
     </div>
   </q-page>
 </template>
@@ -18,69 +34,21 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import Galeria from '../components/Galeria.vue'
+import AntesDepois from '../components/AntesDepois.vue'
+import Video from '../components/Video.vue'
 import { useGlobalStore } from '../stores/globalStore'
-import Header from 'components/Header.vue'
 
 const global = useGlobalStore()
 
 const route = useRoute()
-let title = ref('')
-let descricao = ref('')
-
 const id = computed(() => route.params.id)
 
-const isPage = computed(() => {
-  return {
+let title = computed(() => global.listaCategoria.find(v => v.value == id.value))
 
-    img: 'https://cdn.quasar.dev/img/quasar.jpg',
-    height: '412px',
-    title: title.value,
-    link: 'gallery',
-    btn: false,
-    logo: false
-  }
-})
 
-const lista = computed(() => { 
-  console.log('ID:', id.value)
-  switch (id.value) {
-    case 'custom_remodel':
-      title.value = 'Custom Remodel'
-      global.getImg('Custom Remodel')
-      
-      break;
-    case 'hardscape':
-      title.value = 'Hardscape'
-      global.getImg('HARDSCAPE')
-      
-      break;
-    case 'painting_services':
-      title.value = 'Painting Services'
-      global.getImg('Painting Services')
-      
-      break;
-    case 'accent_wall':
-      title.value = 'Accent Wall'
-      global.getImg('Accent wall')
-      
-      break;
-    case 'bath_remodel':
-      title.value = 'Bath Remodel'
-      global.getImg('Bath Remodel')
-      
-      break;
-    case 'flooring':
-      title.value = 'Flooring'
-      global.getImg('Flooring')
-      
-      break;
-  
-    default:
-      break;
-  }
-
-  return global.listaGaleria
-})
+let antes_depois = computed(() => global.antes_depois.filter((v) => v.data.select == id.value));
+let lista_galeria = computed(() => global.galeria.filter((v) => v.data.select == id.value));
+let listaVideo = computed(() => global.listaVideo.filter((v) => v.data.select == id.value));
 
 </script>
 
